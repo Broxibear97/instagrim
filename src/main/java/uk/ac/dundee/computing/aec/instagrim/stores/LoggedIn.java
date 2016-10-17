@@ -13,7 +13,7 @@ package uk.ac.dundee.computing.aec.instagrim.stores;
 public class LoggedIn {
     boolean logedin=false;
     String Username=null;
-    public void LogedIn(){
+    public void LoggedIn(){
         
     }
     
@@ -23,10 +23,10 @@ public class LoggedIn {
     public String getUsername(){
         return Username;
     }
-    public void setLogedin(){
+    public void setLoggedin(){
         logedin=true;
     }
-    public void setLogedout(){
+    public void setLoggedout(){
         logedin=false;
     }
     
