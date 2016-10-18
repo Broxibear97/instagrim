@@ -50,26 +50,31 @@ public class Login extends HttpServlet {
         
         String username=request.getParameter("username");
         String password=request.getParameter("password");
-        
-        User us=new User();
-        us.setCluster(cluster);
-        boolean isValid=us.IsValidUser(username, password);
-        HttpSession session=request.getSession();
-        System.out.println("Session in servlet "+session);
-        if (isValid){
-            LoggedIn lg= new LoggedIn();
-            lg.setLoggedin();
-            lg.setUsername(username);
-            //request.setAttribute("LoggedIn", lg);
-            
-            session.setAttribute("LoggedIn", lg);
+        if(!username.isEmpty() && !password.isEmpty())
+        {
+            User us=new User();
+            us.setCluster(cluster);
+            boolean isValid=us.IsValidUser(username, password);
+            HttpSession session=request.getSession();
             System.out.println("Session in servlet "+session);
-            RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
-	    rd.forward(request,response);
-            
-        }else{
-            response.sendRedirect("/Instagrim/login.jsp");
+            if (isValid){
+                LoggedIn lg= new LoggedIn();
+                lg.setLoggedin();
+                lg.setUsername(username);
+                //request.setAttribute("LoggedIn", lg);
+
+                session.setAttribute("LoggedIn", lg);
+                System.out.println("Session in servlet "+session);
+                RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
+                rd.forward(request,response);
+
+            }else{
+                response.sendRedirect("/Instagrim/login.jsp");
+            }
         }
+        else{
+                response.sendRedirect("/Instagrim/login.jsp");
+            }
         
     }
 
