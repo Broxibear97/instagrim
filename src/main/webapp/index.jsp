@@ -29,7 +29,7 @@
                         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
                         if (lg != null) {
                             String UserName = lg.getUsername();
-                            if (lg.getlogedin()) {
+                            if (lg.getloggedin()) {
                     %>
 
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
@@ -47,7 +47,7 @@
         <footer>
             <ul>
                 <li class="footer"><a href="/Instagrim">Home</a></li>
-                <li>&COPY; Andy C</li>
+                <li>&COPY; Josh H</li>
             </ul>
         </footer>
     </body>
