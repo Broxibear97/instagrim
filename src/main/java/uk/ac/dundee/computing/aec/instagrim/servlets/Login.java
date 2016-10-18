@@ -50,31 +50,36 @@ public class Login extends HttpServlet {
         
         String username=request.getParameter("username");
         String password=request.getParameter("password");
-        if(!username.isEmpty() && !password.isEmpty())
+        
+        
+        if(username.isEmpty() && password.isEmpty())
         {
-            User us=new User();
-            us.setCluster(cluster);
-            boolean isValid=us.IsValidUser(username, password);
-            HttpSession session=request.getSession();
-            System.out.println("Session in servlet "+session);
-            if (isValid){
-                LoggedIn lg= new LoggedIn();
-                lg.setLoggedin();
-                lg.setUsername(username);
-                //request.setAttribute("LoggedIn", lg);
-
-                session.setAttribute("LoggedIn", lg);
-                System.out.println("Session in servlet "+session);
-                RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
-                rd.forward(request,response);
-
-            }else{
-                response.sendRedirect("/Instagrim/login.jsp");
-            }
+            response.sendRedirect("/Instagrim/login.jsp");
+            return;
         }
-        else{
-                response.sendRedirect("/Instagrim/login.jsp");
-            }
+        
+        if(password.length() < 6)
+        {
+            response.sendRedirect("/Instagrim/login.jsp");
+            return;
+        }
+        
+        User us=new User();
+        us.setCluster(cluster);
+        boolean isValid=us.IsValidUser(username, password);
+        HttpSession session=request.getSession();
+        System.out.println("Session in servlet "+session);
+        if (isValid){
+            LoggedIn lg= new LoggedIn();
+            lg.setLoggedin();
+            lg.setUsername(username);
+            //request.setAttribute("LoggedIn", lg);
+
+            session.setAttribute("LoggedIn", lg);
+            System.out.println("Session in servlet "+session);
+            RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
+            rd.forward(request,response);
+        }
         
     }
 
