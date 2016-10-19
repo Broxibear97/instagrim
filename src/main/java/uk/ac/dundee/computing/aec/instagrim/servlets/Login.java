@@ -54,13 +54,17 @@ public class Login extends HttpServlet {
         
         if(username.isEmpty() && password.isEmpty())
         {
-            response.sendRedirect("/Instagrim/login.jsp");
+            request.setAttribute("error", "Fields must contain data");
+            RequestDispatcher rd=request.getRequestDispatcher("login.jsp");
+            rd.forward(request,response);
             return;
         }
         
         if(password.length() < 6)
         {
-            response.sendRedirect("/Instagrim/login.jsp");
+            request.setAttribute("error", "Password must be longer than 6 characters");
+            RequestDispatcher rd=request.getRequestDispatcher("login.jsp");
+            rd.forward(request,response);
             return;
         }
         
@@ -81,6 +85,11 @@ public class Login extends HttpServlet {
             rd.forward(request,response);
         }
         
+    }
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+            rd.forward(request, response);
     }
 
     /**

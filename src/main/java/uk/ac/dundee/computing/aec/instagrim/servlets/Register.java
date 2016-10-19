@@ -50,19 +50,30 @@ public class Register extends HttpServlet {
         
         if(username.isEmpty() && password.isEmpty())
         {
-            response.sendRedirect("/Instagrim/register.jsp");
+            request.setAttribute("error", "Fields must contain data");
+            RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+            rd.forward(request, response);
             return;
         }
         
         if(password.length() < 6)
         {
-            response.sendRedirect("/Instagrim/register.jsp");
+            request.setAttribute("error", "Password field not long enough");
+            RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+            rd.forward(request, response);
         }
         
         User us=new User();
         us.setCluster(cluster);
         us.RegisterUser(username, password);  
         response.sendRedirect("/Instagrim"); 
+    }
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+      RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+      rd.forward(request, response);
     }
 
     /**
