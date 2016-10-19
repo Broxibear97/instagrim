@@ -1,4 +1,4 @@
-<%-- 
+    <%-- 
     Document   : register.jsp
     Created on : Sep 28, 2014, 6:29:51 PM
     Author     : Administrator
@@ -26,6 +26,13 @@
        
         <article>
             <h3>Register as user</h3>
+            <%
+                String s = (String)request.getAttribute("error");
+                if(s != null)
+                {
+                    out.println(s);
+                }
+             %>
             <form method="POST"  action="Register">
                 <ul>
                     <li>User Name <input type="text" name="username"></li>
