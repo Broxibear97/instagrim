@@ -13,14 +13,10 @@
         <link rel="stylesheet" type="text/css" href="Styles.css" />
     </head>
     <body>
-        <h1>InstaGrim ! </h1>
-        <h2>Your world in Black and White</h2>
-        <nav>
-            <ul>
-                <li class="nav"><a href="upload.jsp">Upload</a></li>
-                <li class="nav"><a href="/Instagrim/Images/majed">Sample Images</a></li>
-            </ul>
-        </nav>
+        <div>
+            <p>INSTAGRIM</p>
+            <a href="/Instagrim">Home</a>
+            <a href="/Instagrim/Logout">Logout</a>
  
         <article>
             <h3>File Upload</h3>
