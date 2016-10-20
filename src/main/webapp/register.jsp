@@ -13,16 +13,11 @@
         <link rel="stylesheet" type="text/css" href="Styles.css" />
     </head>
     <body>
-        <header>
-        <h1>InstaGrim ! </h1>
-        <h2>Your world in Black and White</h2>
-        </header>
-        <nav>
-            <ul>
-                
-                <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
-            </ul>
-        </nav>
+        <div>
+                <p> INSTAGRIM </p>
+                <a href="/Instagrim"> Home </a>
+                <a href="/Instagrim/Login"> Login </a>
+        </div>
        
         <article>
             <h3>Register as user</h3>
