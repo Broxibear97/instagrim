@@ -15,40 +15,32 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <header>
-            <h1>InstaGrim ! </h1>
-            <h2>Your world in Black and White</h2>
-        </header>
-        <nav>
-            <ul>
-
-               
-                <li><a href="upload.jsp">Upload</a></li>
-                    <%
-                        
-                        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-                        if (lg != null) {
-                            String UserName = lg.getUsername();
-                            if (lg.getloggedin()) {
-                    %>
-
-                <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
-                    <%}
-                            }else{
-                                %>
-                 <li><a href="/Instagrim/Register">Register</a></li>
-                <li><a href="/Instagrim/Login">Login</a></li>
+        <div>
+            <div>
+                <p> INSTAGRIM </p>
                 <%
-                                        
+                        
+                    LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                    if (lg == null) 
+                    {
                             
-                    }%>
-            </ul>
-        </nav>
-        <footer>
-            <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
-                <li>&COPY; Josh H</li>
-            </ul>
-        </footer>
+                %>
+
+                <a href="/Instagrim/Register">Register</a>
+                <a href="/Instagrim/Login">Login</a>
+                <%
+                    } 
+                    else
+                    {
+                        %>
+                        <a href="/Instagrim/Upload">Upload</a>
+                        <a href="/Instagrim/Logout">Logout</a>
+                        <%
+                    }
+                %>
+                                
+                
+            </div>
+        </div>
     </body>
 </html>
