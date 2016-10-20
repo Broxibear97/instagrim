@@ -14,18 +14,11 @@
 
     </head>
     <body>
-        <header>
-        <h1>InstaGrim ! </h1>
-        <h2>Your world in Black and White</h2>
-        </header>
-        <nav>
-            <ul>
-                
-                <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
-            </ul>
-        </nav>
-       
-        <article>
+        <div>
+            <p> INSTAGRIM </p>
+            <a href="/Instagrim">Home</a>
+            <a href="/Instagrim/Register">Register </a>
+            <article>
             <h3>Login</h3>
             <form method="POST"  action="Login">
                 <ul>
@@ -37,10 +30,6 @@
             </form>
 
         </article>
-        <footer>
-            <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
-            </ul>
-        </footer>
+        </div>
     </body>
 </html>
