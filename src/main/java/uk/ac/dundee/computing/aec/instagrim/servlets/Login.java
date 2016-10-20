@@ -84,6 +84,13 @@ public class Login extends HttpServlet {
             RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
             rd.forward(request,response);
         }
+        else
+        {
+            request.setAttribute("error", "Wrong login details!");
+            RequestDispatcher rd=request.getRequestDispatcher("login.jsp");
+            rd.forward(request,response);
+            return;
+        }
         
     }
     @Override
