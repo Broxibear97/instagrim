@@ -17,7 +17,7 @@
             <p>INSTAGRIM</p>
             <a href="/Instagrim">Home</a>
             <a href="/Instagrim/Logout">Logout</a>
- 
+        </div>   
         <article>
             <h3>File Upload</h3>
             <form method="POST" enctype="multipart/form-data" action="Image">
@@ -29,9 +29,7 @@
 
         </article>
         <footer>
-            <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
-            </ul>
+            <p>&COPY; Josh H & Andy C</p>
         </footer>
     </body>
 </html>

@@ -39,9 +39,7 @@
 
         </article>
         <footer>
-            <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
-            </ul>
+            <p>&COPY; Josh H & Andy C</p>
         </footer>
     </body>
 </html>

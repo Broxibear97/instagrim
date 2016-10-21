@@ -18,7 +18,8 @@
             <p> INSTAGRIM </p>
             <a href="/Instagrim">Home</a>
             <a href="/Instagrim/Register">Register </a>
-            <article>
+        </div>
+        <article>
             <h3>Login</h3>
             <form method="POST"  action="Login">
                 <ul>
@@ -28,8 +29,10 @@
                 <br/>
                 <input type="submit" value="Login"> 
             </form>
-
         </article>
-        </div>
+        <footer>
+            <p>&COPY; Josh H & Andy C</p>
+        </footer>
+
     </body>
 </html>

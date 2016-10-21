@@ -16,7 +16,6 @@
     </head>
     <body>
         <div>
-            <div>
                 <p> INSTAGRIM </p>
                 <%
                         
@@ -33,14 +32,16 @@
                     else
                     {
                         %>
+                        <a href="/Instagrim/Profile">Profile</a>
                         <a href="/Instagrim/Upload">Upload</a>
+                        <a href="/Instagrim/Images/<%=lg.getUsername()%>">Images</a>
                         <a href="/Instagrim/Logout">Logout</a>
                         <%
                     }
                 %>
-                                
-                
-            </div>
         </div>
+        <footer>
+            <p>&COPY; Josh H & Andy C</p>
+        </footer>
     </body>
 </html>
