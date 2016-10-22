@@ -21,6 +21,13 @@
         </div>
         <article>
             <h3>Login</h3>
+            <%
+                String s = (String)request.getAttribute("error");
+                if(s != null)
+                {
+                    out.println(s);
+                }
+             %>
             <form method="POST"  action="Login">
                 <ul>
                     <li>User Name <input type="text" name="username"></li>
