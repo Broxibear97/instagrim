@@ -19,6 +19,13 @@
             <a href="/Instagrim/Logout">Logout</a>
         </div>   
         <article>
+            <% if(request.getAttribute("success") != null)
+            {
+                %>
+                <p> SUCCESS! </p>
+                <%
+            }
+            %>
             <h3>File Upload</h3>
             <form method="POST" enctype="multipart/form-data" action="Image">
                 File to upload: <input type="file" name="upfile"><br/>
