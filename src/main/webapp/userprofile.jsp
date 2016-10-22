@@ -21,8 +21,36 @@
                 if(s != null)
                 {
                     %>
-                    <p>Username looked for: <%= s %> </p>
+                    <p>User being looked for: <%= s %> </p>
                     <%
+                    LoggedIn logIn = (LoggedIn)session.getAttribute("LoggedIn");
+                    String user;
+                    if(logIn != null)
+                    {
+                        user = logIn.getUsername();
+                        if(s.equals(user))
+                        {
+                            %>
+                            <p> THIS IS YOU! </p>
+                            <%
+                        }
+                    } 
+                    java.util.ArrayList<String> details = (java.util.ArrayList<String>)request.getAttribute("details");
+                    if(details == null || details.size() == 0)
+                    {
+                        %>
+                        <p> No Details for this account. Maybe it doesnt exist </p>
+                        <%
+                    }
+                    else
+                    {
+                        for(String det: details)
+                        {
+                            %>
+                            <p> <%=det %> </p>   
+                            <%
+                        }
+                    }
                 }
                 %>  
             </div>
