@@ -17,44 +17,74 @@
         <div>
             <div>
                 <p> INSTAGRIM </p>
+                <%
+                        
+                    LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                    if (lg == null) 
+                    {
+                            
+                %>
+
+                <a href="/Instagrim/Register">Register</a>
+                <a href="/Instagrim/Login">Login</a>
+                <%
+                    } 
+                    else
+                    {
+                        %>
+                        <a href="/Instagrim/Upload">Upload</a>
+                        <a href="/Instagrim/Images/<%=lg.getUsername()%>">Images</a>
+                        <a href="/Instagrim/Logout">Logout</a>
+                     
+                        <%
+                    }
+                %>
+        </div>
+        
+        
                 <% String s = (String)request.getAttribute("user");
                 if(s != null)
                 {
                     %>
                     <p>User being looked for: <%= s %> </p>
                     <%
+                    session.setAttribute("lookingFor", s);
                     LoggedIn logIn = (LoggedIn)session.getAttribute("LoggedIn");
-                    String user;
+                    String user = "";
                     if(logIn != null)
-                    {
                         user = logIn.getUsername();
-                        if(s.equals(user))
-                        {
-                            %>
-                            <p> THIS IS YOU! </p>
-                            <%
-                        }
-                    } 
+                    
                     java.util.ArrayList<String> details = (java.util.ArrayList<String>)request.getAttribute("details");
-                    if(details == null || details.size() == 0)
+                    if(details == null)
                     {
                         %>
-                        <p> No Details for this account. Maybe it doesnt exist </p>
+                        <p> No Details for this account. Maybe it doesn't exist </p>
                         <%
                     }
                     else
                     {
-                        for(String det: details)
+                        %>
+                        <p> Username: <%=details.get(0) %> </p> 
+                        <p> First Name: <%=details.get(1) %> </p>                       
+                        <p> Last Name <%=details.get(2) %> </p>  
+                        <%
+                        if(user != null && user.equals((String)session.getAttribute("lookingFor")))
                         {
+                        
                             %>
-                            <p> <%=det %> </p>   
+                            <form action="/Instagrim/Profile" method="POST"> 
+                                <p>New First Name</p>
+                                <input type="text" id="FirstName" value="" /><br>
+                                <p>New Last Name</p>
+                                <input type="text" id="LastName" value=""/><br>
+                                <input type="submit" value="Edit" />
+                            </form>
                             <%
-                        }
+                       }
                     }
                 }
                 %>  
             </div>
-        </div>
         <footer>
             <p>&COPY; Josh H & Andy C</p>
         </footer>
