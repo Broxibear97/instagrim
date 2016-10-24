@@ -44,7 +44,7 @@ public class User {
                 boundStatement.bind( // here you are binding the 'boundStatement'
                         username,EncodedPassword));
         //We are assuming this always works.  Also a transaction would be good here !
-        
+        session.close();
         return true;
     }
     
