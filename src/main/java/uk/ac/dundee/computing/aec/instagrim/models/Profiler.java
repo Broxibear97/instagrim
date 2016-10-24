@@ -12,6 +12,9 @@ import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.datastax.driver.core.Session;
 import java.util.ArrayList;
+import javax.servlet.FilterConfig;
+import javax.servlet.http.HttpServletResponse;
+import uk.ac.dundee.computing.aec.instagrim.filters.ProtectPages;
 
 /**
  *
@@ -19,6 +22,7 @@ import java.util.ArrayList;
  */
 public class Profiler {
     Cluster cluster;
+    FilterConfig fc;
     
     public Profiler()
     {
@@ -28,25 +32,62 @@ public class Profiler {
         this.cluster = cluster;
     }
     
+    public boolean UpdateDetails(String user, String fname, String lname)
+    {
+        try
+        {
+            Session session = cluster.connect("instagrim");
+            String query = "UPDATE userprofiles SET first_name = ?, last_name = ? where login = ?";
+            PreparedStatement prep = session.prepare(query);
+            BoundStatement bsprep = new BoundStatement(prep);
+            session.execute(bsprep.bind(fname, lname, user));
+            session.close();
+
+        }
+        catch(Exception ex)
+        {
+            System.out.println("Error --> " + ex);
+            return false;
+        }
+        
+        return true;
+    }
+    
+    
+    
     public ArrayList<String> RetrieveDetails(String User)
     {
         ArrayList<String> details = new ArrayList<>();
 
         Session session = cluster.connect("instagrim");
-        PreparedStatement ps = session.prepare("select login from userprofiles where login =?");
+        PreparedStatement ps = session.prepare("select login, first_name, last_name, email from userprofiles where login =?");
         ResultSet rs = null;
         BoundStatement boundStatement = new BoundStatement(ps);
         rs = session.execute( // this is where the query is executed
                 boundStatement.bind( // here you are binding the 'boundStatement'
                         User));
-        if (rs.isExhausted()) {
+        session.close();
+        if (rs.isExhausted() || rs == null) {
             System.out.println("No details");
             return null;
         } else {
             for (Row row : rs) {        
-                java.util.UUID UUID = row.getUUID("login");
-                System.out.println("UUID" + UUID.toString());
-                details.add(UUID.toString());
+                details.add(row.getString("login"));
+                
+                if(row.getString("first_name") != null)
+                    details.add(row.getString("first_name"));
+                else
+                    details.add("N/A");
+                
+                if(row.getString("last_name") != null)
+                    details.add(row.getString("last_name"));
+                else
+                    details.add("N/A");
+                
+                /*if(row.getString("email") != null)
+                    details.add(row.getString("email"));
+                else
+                    details.add("N/A"); */
             }
         }
         
